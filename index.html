@@ -8,6 +8,32 @@
     <!-- Load Chart.js for the line chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+async function loadDashboardData() {
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}/api/dashboard`
+            );
+
+        const data =
+            await response.json();
+
+        console.log(data);
+
+        return data;
+
+    } catch(ex) {
+
+        console.error(ex);
+
+        return null;
+    }
+}
+    
+     const API_URL =
+    "https://investments-api-aqb3.onrender.com";
     <style>
         :root {
             --primary-color: #2c3e50;
