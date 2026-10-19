@@ -1702,44 +1702,37 @@
         document.getElementById('last-refreshed').innerText = `Last Refreshed: ${dateString} at ${timeString}`;
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-       
-       fetch("https://investments-api-aqb3.onrender.com/api/dashboard")
-    .then(response => response.json())
-    .then(data => {
+document.addEventListener('DOMContentLoaded', () => {
 
-        document.getElementById("api-test-card").innerHTML = `
-            <h3>Live API Prices</h3>
-            <p>BHP: $${data.stocks[0].price}</p>
-            <p>CBA: $${data.stocks[1].price}</p>
-        `;
+    fetch("https://investments-api-aqb3.onrender.com/api/dashboard")
+        .then(response => response.json())
+        .then(data => {
 
-    })
-    .catch(error => {
-        console.error(error);
+            document.getElementById("api-test-card").innerHTML = `
+                <h3>Live API Prices</h3>
+                <p>BHP: $${data.stocks[0].price}</p>
+                <p>CBA: $${data.stocks[1].price}</p>
+            `;
 
-        document.getElementById("api-test-card").innerHTML =
-            "API connection failed";
-    });
-    .then(response => response.json())
-    .then(data => {
-        alert(
-            "BHP: " +
-            data.stocks[0].price +
-            "\nCBA: " +
-            data.stocks[1].price
-        );
-    })
-    .catch(error => {
-        console.error(error);
-    });
-        initializeData(); 
-        renderPriceOverview();
-        renderNewsSection();
-        setupSortableHeaders();
-        setupColumnFilters();
-        setupCollapsibles();
-        updateRefreshTime();
+        })
+        .catch(error => {
+
+            console.error(error);
+
+            document.getElementById("api-test-card").innerHTML =
+                "API connection failed";
+
+        });
+
+    initializeData();
+    renderPriceOverview();
+    renderNewsSection();
+    setupSortableHeaders();
+    setupColumnFilters();
+    setupCollapsibles();
+    updateRefreshTime();
+
+});
 
         // Bind clear filters button event
         document.getElementById('clear-filters-btn').addEventListener('click', (e) => {
