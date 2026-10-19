@@ -1692,6 +1692,20 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+       
+        fetch("https://investments-api-aqb3.onrender.com/api/dashboard")
+    .then(response => response.json())
+    .then(data => {
+        alert(
+            "BHP: " +
+            data.stocks[0].price +
+            "\nCBA: " +
+            data.stocks[1].price
+        );
+    })
+    .catch(error => {
+        console.error(error);
+    });
         initializeData(); 
         renderPriceOverview();
         renderNewsSection();
